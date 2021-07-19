@@ -1,0 +1,93 @@
+﻿@model FornecedorModel
+
+@{
+    ViewData["Title"] = "Fornecedor";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>@ViewData["Title"]</h1>
+            <p>Para cadastrar um fornecedor, por favor, preencha os campos abaixo.</p>
+        </div>
+    </div>
+
+    @if (Model.Empresas.Count() > 0)
+    {
+        <div class="row">
+            <div class="col-12">
+                <div class="list-group">
+                    <ul class="mb-4 mt-0">
+                        <li><a asp-action="FornecedorLista" asp-controller="Home">Lista de Fornecedores</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <div class="card">
+                    <h4 class="card-header bg-primary text-white">Dados de Forncedor</h4>
+                    <div class="card-body">
+                        <form role="form" asp-action="FornecedorCadastro" asp-controller="Home" method="POST">
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <label for="empresa">Empresa</label>
+                                    <select class="form-control" asp-for="Empresa">
+                                        @foreach (var emp in Model.Empresas)
+                                        {
+                                            <option value="@emp.NomeFantasia">@emp.NomeFantasia</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <label for="nomeFantasia">Nome</label>
+                                    <input type="text" class="form-control" id="fornecedorNome" asp-for="Nome" maxlength="100" placeholder="Nome de Pessoa Jurídica" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <label for="cnpj">CNPJ</label>
+                                    <input type="text" class="form-control" id="cnpj" asp-for="CpfCnpj" maxlength="18" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <label for="rg">RG</label>
+                                    <input type="text" class="form-control" id="rg" asp-for="Rg" maxlength="9" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <label for="dataNascimento">Data de Nascimento</label>
+                                    <input type="text" class="form-control" id="dataNascimento" asp-for="DataNascimento" maxlength="10" value="" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <label for="telefone1">Telefone Fixo</label>
+                                    <input type="tel" class="form-control" id="telefone" asp-for="Telefone1" placeholder="(11) 3210-3210" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <label for="telefone2">Telefone Móvel</label>
+                                    <input type="tel" class="form-control" id="telefone2" asp-for="Telefone2" placeholder="(11) 9900-0000" />
+                                </div>
+                            </div>
+
+                            <div class="btn-group">
+                                <button type="submit" class="btn btn-md btn-primary">Cadastrar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <h4>É necessário antes cadastrar uma empresa</h4>
+    }
+</div>

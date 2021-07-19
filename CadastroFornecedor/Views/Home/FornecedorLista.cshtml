@@ -1,0 +1,60 @@
+﻿@model IEnumerable<FornecedorModel>
+@{
+    ViewData["Title"] = "Fornecedores";
+}
+
+<div class="container">
+    <h1 class="mb-4">Listagem de Fornecedores</h1>
+    <div class="mt-4 mb-2">
+        <a asp-controller="Home" asp-action="Fornecedor">Novo Fornecedor</a>
+    </div>
+    <div class="row">
+        <div class="col-12 mb-2">
+            <form role="form" asp-controller="Home" asp-action="Pesquisa" method="POST">
+                <div class="d-flex p-0 flex-row">
+                    <input type="text" class="form-control" id="campoFiltro" name="campoFiltro" placeholder="Nome, CPF/CNPJ ou Data de cadastro" />
+                    <button type="submit" class="btn btn-sm btn-primary" role="button">Pesquisar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    @if (Model.Count() > 0)
+    {
+        <div class="table-responsive">
+            <table class="table table-striped" role="grid">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Nome do Fornecedor</th>
+                        <th>CPF/CNPJ</th>
+                        <th>Telefone</th>
+                        <th>Empresa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (FornecedorModel forn in Model)
+                    {
+                        <tr>
+                            <td>@forn.Nome</td>
+                            <td>@forn.CpfCnpj</td>
+                            
+                            @if (!string.IsNullOrEmpty(forn.Telefone1))
+                            {
+                                <td>@forn.Telefone1</td>
+                            }
+                            else if (!string.IsNullOrEmpty(forn.Telefone2))
+                            {
+                                <td>@forn.Telefone2</td>
+                            }
+
+                            <td>@forn.Empresa</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <h4>Nenhum fornecedor listado</h4>
+    }
+</div>

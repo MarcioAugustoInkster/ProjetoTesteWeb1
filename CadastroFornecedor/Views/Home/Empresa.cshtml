@@ -1,0 +1,76 @@
+﻿@model EmpresaModel
+@{
+    ViewData["Title"] = "Empresa";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>@ViewData["Title"]</h1>
+            <p>Para cadastrar uma empresa, por favor, preencha os campos abaixo.</p>
+        </div>
+        <div class="col-12">
+            <div class="list-group">
+                <ul class="mb-4 mt-0">
+                    <li><a asp-action="EmpresaLista" asp-controller="Home">Lista de Empresas</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-6">
+            <div class="form-row">
+                <form role="form" asp-action="EmpresaCadastro" asp-controller="Home" method="POST">
+                    <div class="form-group">
+                        <label for="nomeFantasia">Nome Fantasia</label>
+                        <input type="text" class="form-control" id="nomeFantasia" asp-for="NomeFantasia" maxlength="100" placeholder="Imóveis João Ldta." />
+                    </div>
+                    <div class="form-group">
+                        <div class="form-row">
+                            <label for="cnpj">CNPJ</label>
+                            <input type="text" class="form-control" id="cnpj" asp-for="Cnpj" maxlength="18" placeholder="12.345.678/9012-34" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-row">
+                            <label for="uf">UF</label>
+                            <select class="form-control" id="uf" asp-for="UF">
+                                <option value="AC">Acre</option>
+                                <option value="AL">Alagoas</option>
+                                <option value="AM">Amazonas</option>
+                                <option value="AP">Amapá</option>
+                                <option value="BA">Bahia</option>
+                                <option value="CE">Ceará</option>
+                                <option value="DF">Distrito Federal</option>
+                                <option value="ES">Espírito Santo</option>
+                                <option value="GO">Goiás</option>
+                                <option value="MA">Maranhão</option>
+                                <option value="MT">Mato Grosso</option>
+                                <option value="MS">Mato Grosso do Sul</option>
+                                <option value="MG">Minas Gerais</option>
+                                <option value="PA">Pará</option>
+                                <option value="PB">Paraíba</option>
+                                <option value="PR">Paraná</option>
+                                <option value="PE">Pernambuco</option>
+                                <option value="PI">Piauí</option>
+                                <option value="RJ">Rio de Janeiro</option>
+                                <option value="RO">Rondônia</option>
+                                <option value="RR">Roraima</option>
+                                <option value="RS">Rio Grande do Sul</option>
+                                <option value="SC">Santa Catarina</option>
+                                <option value="SE">Sergipe</option>
+                                <option value="SP">São Paulo</option>
+                                <option value="TO">Tocantins</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <button type="submit" class="btn btn-md btn-primary">Cadastrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
